@@ -6,57 +6,94 @@
     <title>IoT Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
 </head>
 
 <body>
-    <h1 class="left">Dashboard</h1>
-    <br>
-    <img src="icons/edit.svg" alt="map-pin" class="left svg-white" />
-    <h2>Edit Sensor Information</h2>
-    <br>
-    <img src="icons/user.svg" alt="map-pin" class="left svg-white" />
-    <h2>View Profile</h2>
-    <ul class="flex-container">
+    <div class="Account" style="display: none;">
+        <div class="AccountInside">
+            <img id="ProfilePic"
+                style="height: 150px;width: 150px;border-radius: 500px;margin-bottom: 20px;border: 3px solid white;box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;margin-bottom: 100px;"
+                src="profile.png" alt="">
 
-        <li class="flex-item">
-            <h2 class="left">Sensor 1</h2>
-            <br>
-            <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
-            <p>Master Bedroom</p>
-            <br>
-            <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
-            <p>See Stats</p>
-            <div class="slideThree">
-                <input type="checkbox" value="None" id="slideThree" name="check" checked />
-                <label for="slideThree"></label>
-            </div>
-        </li>
+            <p style="padding-left: 10%;padding-right: 10%;line-height: unset;text-align: center;">Change
+                <b>Profile.png</b> to your Profile pic</p>
 
-        <li class="flex-item">
-            <h2 class="left">Sensor 2</h2>
-            <br>
-            <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
-            <p>Kitchen</p>
-            <br>
-            <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
-            <p>See Stats</p>
-            <div class="slideThree">
-                <input type="checkbox" value="None" id="slideThree2" name="check" checked />
-                <label for="slideThree2"></label>
-            </div>
-        </li>
+            <button onclick="account()"
+                style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Close</button>
+        </div>
+    </div>
 
-        <li class="flex-item">3</li>
-        <li class="flex-item">4</li>
-        <li class="flex-item">5</li>
-        <li class="flex-item">6</li>
-        <li class="flex-item">1</li>
-        <li class="flex-item">2</li>
-        <li class="flex-item">3</li>
-        <li class="flex-item">4</li>
-        <li class="flex-item">5</li>
-        <li class="flex-item">6</li>
-    </ul>
+    <div class="Stats" style="display: none;">
+        <div class="StatsInside">
+
+            <canvas id="myChart" width="90%" height="70%"></canvas>
+
+
+            <button onclick="stats()"
+                style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Close</button>
+        </div>
+
+    </div>
+
+    </div>
+    <div class="NotPopup">
+        <h1 class="left">Dashboard</h1>
+        <br>
+        <img src="icons/edit.svg" alt="map-pin" class="left svg-white" />
+        <h2>Edit Sensor Information</h2>
+        <br>
+        <img src="icons/user.svg" alt="map-pin" class="left svg-white" />
+        <a onclick="account()" style="cursor: pointer;">
+            <h2>View Profile</h2>
+        </a>
+        <ul class="flex-container">
+
+            <li class="flex-item">
+                <h2 class="left">Sensor 1</h2>
+                <br>
+                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+                <p>Master Bedroom</p>
+                <br>
+                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+                <p>See Stats</p>
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="slideThree" name="check" checked />
+                    <label for="slideThree"></label>
+                </div>
+            </li>
+
+            <li class="flex-item">
+                <h2 class="left">Sensor 2</h2>
+                <br>
+                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+                <p>Kitchen</p>
+                <br>
+                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+                <p onclick="stats()">See Stats</p>
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="slideThree2" name="check" />
+                    <label for="slideThree2"></label>
+                </div>
+            </li>
+
+            <li class="flex-item">3</li>
+            <li class="flex-item">4</li>
+            <li class="flex-item">5</li>
+            <li class="flex-item">6</li>
+            <li class="flex-item">1</li>
+            <li class="flex-item">2</li>
+            <li class="flex-item">3</li>
+            <li class="flex-item">4</li>
+            <li class="flex-item">5</li>
+            <li class="flex-item">6</li>
+        </ul>
+
+    </div>
+
+
 </body>
+<script src="javascript/dashboard.js"></script>
 
 </html>
