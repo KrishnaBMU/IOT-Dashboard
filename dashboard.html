@@ -21,14 +21,14 @@
                 <b>Profile.png</b> to your Profile pic</p>
 
             <button onclick="account()"
-                style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Close</button>
+                style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;" class="pointer">Close</button>
         </div>
     </div>
 
     <div class="Stats" style="display: none;">
         <div class="StatsInside">
 
-            <canvas id="myChart" width="90%" height="70%"></canvas>
+            <canvas id="WashroomTap" width="90%" height="70%"></canvas>
 
 
             <button onclick="stats()"
@@ -57,7 +57,7 @@
                 <p>Master Bedroom</p>
                 <br>
                 <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
-                <p>See Stats</p>
+                <p class="pointer" onclick="stats(1)">See Stats</p>
                 <div class="slideThree">
                     <input type="checkbox" value="None" id="slideThree" name="check" checked />
                     <label for="slideThree"></label>
@@ -71,23 +71,93 @@
                 <p>Kitchen</p>
                 <br>
                 <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
-                <p onclick="stats()">See Stats</p>
+                <p class="pointer" onclick="stats(2)">See Stats</p>
                 <div class="slideThree">
                     <input type="checkbox" value="None" id="slideThree2" name="check" />
                     <label for="slideThree2"></label>
                 </div>
             </li>
 
-            <li class="flex-item">3</li>
-            <li class="flex-item">4</li>
-            <li class="flex-item">5</li>
-            <li class="flex-item">6</li>
-            <li class="flex-item">1</li>
-            <li class="flex-item">2</li>
-            <li class="flex-item">3</li>
-            <li class="flex-item">4</li>
-            <li class="flex-item">5</li>
-            <li class="flex-item">6</li>
+            <li class="flex-item">
+                <h2 class="left">Temperature</h2>
+                <br>
+                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+                <p>Kitchen</p>
+                <br>
+                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+                <p class="pointer" onclick="stats(3)">See Stats</p>
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="slideThree2" name="check" checked/>
+                    <label for="slideThree2"></label>
+                </div>
+            </li>
+
+            <li class="flex-item">
+                <h2 class="left">Fire</h2>
+                <br>
+                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+                <p>Kitchen</p>
+                <br>
+                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+                <p class="pointer" onclick="stats(4)">See Stats</p>
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="slideThree2" name="check" />
+                    <label for="slideThree2"></label>
+                </div>
+            </li>
+
+            <li class="flex-item">
+                <h2 class="left">Door</h2>
+                <br>
+                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+                <p>Garage</p>
+                <br>
+                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+                <p class="pointer" onclick="stats(5)">See Stats</p>
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="slideThree2" name="check" checked/>
+                    <label for="slideThree2"></label>
+                </div>
+            </li>
+            <li class="flex-item">
+                <h2 class="left">Lights</h2>
+                <br>
+                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+                <p>Living Room</p>
+                <br>
+                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+                <p class="pointer" onclick="stats(6)">See Stats</p>
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="slideThree2" name="check" />
+                    <label for="slideThree2"></label>
+                </div>
+            </li>
+            <li class="flex-item">
+                <h2 class="left">Water Tap</h2>
+                <br>
+                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+                <p>Washroom</p>
+                <br>
+                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+                <p class="pointer" onclick="stats(7)">See Stats</p>
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="slideThree2" name="check" checked/>
+                    <label for="slideThree2"></label>
+                </div>
+            </li>
+            <li class="flex-item">
+                <h2 class="left">Fire</h2>
+                <br>
+                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+                <p>Children's Room</p>
+                <br>
+                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+                <p class="pointer" onclick="stats(8)">See Stats</p>
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="slideThree2" name="check" />
+                    <label for="slideThree2"></label>
+                </div>
+            </li>
         </ul>
 
     </div>

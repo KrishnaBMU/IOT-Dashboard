@@ -73,6 +73,10 @@ h6 {
     line-height: 1.5;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 ul.listing {
     margin-top: 2px;
 }
