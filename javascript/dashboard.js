@@ -27,6 +27,52 @@ function stats(SendorId){
     }
 }
 
+function newSensorPopup(){
+    let sensor = document.querySelector(".AddSensor");
+    let notPopup = document.querySelector(".NotPopup")
+    if(sensor.style.display == "none"){
+        sensor.style.display = "flex"
+        notPopup.style.filter = "blur(7px)";
+    }
+    else{
+        sensor.style.display = "none"
+        notPopup.style.filter = ""
+    }
+}
+
+function newSensorPopupSave(){
+    let sensorName = document.getElementById("sensorName");
+    let sensorLocation = document.getElementById("sensorLocation");
+    newSensor();
+}
+
+function newSensor(){
+    var code = document.getElementsByTagName("ul");
+    var sensorStart = `<li class="flex-item">
+    <h2 class="left">`
+    var sensorMiddle = `</h2>
+    <br>
+    <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+    <p>`
+    var sensorEnd = `</p>
+    <br>
+    <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+    <p class="pointer" onclick="stats(8)">See Stats</p>
+    <div class="slideThree">
+        <input type="checkbox" value="None" id="slideThree8" name="check" />
+        <label for="slideThree8"></label>
+    </div>
+</li>`
+
+    var addSensorText = `<div class="addItem pointer" onclick="newSensorPopup()">
+    <img src="icons/addItem.png" width="100px" height="100px" alt="Add">
+</div>`
+    
+    var sensors = document.querySelector("ul");
+    sensors.removeChild(document.querySelector(".addItem"));
+    console.log(sensors.innerHTML)
+    sensors.innerHTML += sensorStart + document.getElementById("sensorName").value + sensorMiddle + document.getElementById("sensorLocation").value +  sensorEnd +"\n\n\n" + addSensorText;
+}
 // var ctx = document.getElementById('myChart').getContext('2d');
 // var myChart = new Chart(ctx, {
 //     type: 'bar',
@@ -99,12 +145,3 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
-
-function newSensor(){
-    var code = document.getElementsByTagName("ul");
-    var sensor = document.getElementsByClassName("flex-item")[0];
-    var newsensor = sensor.cloneNode(true);
-    sensor.parentNode.appendChild(newsensor);
- 
-}

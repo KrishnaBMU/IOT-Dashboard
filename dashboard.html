@@ -18,10 +18,12 @@
                 src="profile.png" alt="">
 
             <p style="padding-left: 10%;padding-right: 10%;line-height: unset;text-align: center;">Change
-                <b>Profile.png</b> to your Profile pic</p>
+                <b>Profile.png</b> to your Profile pic
+            </p>
 
             <button onclick="account()"
-                style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;" class="pointer">Close</button>
+                style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;"
+                class="pointer">Close</button>
         </div>
     </div>
 
@@ -37,7 +39,53 @@
 
     </div>
 
+    <div class="AddSensor" style="display: none;">
+        <div class="AddSensorInside">
+
+            <form method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="padding-top: 10px;">
+                                <p>Sensor Name:</p>
+                            </td>
+                            <td style="padding-left: 5px;">
+                                <input type="text" name="sensorName" id="sensorName" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 10px;">
+                                <p>Location: </p>
+                            </td>
+                            <td style="padding-left: 5px;">
+                                <input type="text" name="sensorLocation" id="sensorLocation" value="">
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <td>
+                                <p style="font-family: Arial, Helvetica, sans-serif;font-size: medium;">Function: </p>
+                            </td>
+                            <td style="padding-left: 5px;">
+                                <input
+                                    style="padding: 2px 5px;border: 2px solid gray;border-radius: 5px;color: rgb(88, 88, 88);"
+                                    type="text" name="UserName" id="AccountUsername" value="Admin">
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+
+            </form>
+
+            <div style="display: flex;justify-content: center; width: 100%;min-height: 20%;align-items: center;">
+                <button onclick="newSensorPopupSave()"
+                    style="padding: 5px 13px;background-color: rgba(13, 214, 13, 0.904);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Save</button>
+                &nbsp; &nbsp; &nbsp;
+                <button onclick="newSensorPopup()"
+                    style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Close</button>
+            </div>
+        </div>
     </div>
+
     <div class="NotPopup">
         <h1 class="left">Dashboard</h1>
         <br>
@@ -89,7 +137,7 @@
                 <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
                 <p class="pointer" onclick="stats(3)">See Stats</p>
                 <div class="slideThree">
-                    <input type="checkbox" value="None" id="slideThree3" name="check" checked/>
+                    <input type="checkbox" value="None" id="slideThree3" name="check" checked />
                     <label for="slideThree3"></label>
                 </div>
             </li>
@@ -117,10 +165,11 @@
                 <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
                 <p class="pointer" onclick="stats(5)">See Stats</p>
                 <div class="slideThree">
-                    <input type="checkbox" value="None" id="slideThree5" name="check" checked/>
+                    <input type="checkbox" value="None" id="slideThree5" name="check" checked />
                     <label for="slideThree5"></label>
                 </div>
             </li>
+
             <li class="flex-item">
                 <h2 class="left">Lights</h2>
                 <br>
@@ -134,7 +183,8 @@
                     <label for="slideThree6"></label>
                 </div>
             </li>
-            <li class="flex-item">
+
+            <!-- <li class="flex-item">
                 <h2 class="left">Water Tap</h2>
                 <br>
                 <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
@@ -143,23 +193,14 @@
                 <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
                 <p class="pointer" onclick="stats(7)">See Stats</p>
                 <div class="slideThree">
-                    <input type="checkbox" value="None" id="slideThree7" name="check" checked/>
+                    <input type="checkbox" value="None" id="slideThree7" name="check" checked />
                     <label for="slideThree7"></label>
                 </div>
-            </li>
-            <li class="flex-item">
-                <h2 class="left">Fire</h2>
-                <br>
-                <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
-                <p>Children's Room</p>
-                <br>
-                <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
-                <p class="pointer" onclick="stats(8)">See Stats</p>
-                <div class="slideThree">
-                    <input type="checkbox" value="None" id="slideThree8" name="check" />
-                    <label for="slideThree8"></label>
-                </div>
-            </li>
+            </li> -->
+
+            <div class="addItem pointer" onclick="newSensorPopup()">
+                <img src="icons/addItem.png" width="100px" height="100px" alt="Add">
+            </div>
         </ul>
 
     </div>
