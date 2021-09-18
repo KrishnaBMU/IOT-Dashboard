@@ -141,6 +141,19 @@ flex item color palette
     border-radius: 5%;
 }
 
+/* .flex-item:hover > h2,.flex-item:hover > p {
+    font-weight: bold;
+    transition: font-weight 0.5s;  
+    
+} */
+
+.flex-item:hover{
+    border: 1px solid rgb(255, 167, 255);
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+
+
 .left {
     margin-left: 10px;
 }
@@ -195,6 +208,11 @@ a:visited {
     z-index: 0;
     font: 12px/26px 'futura';
     font-weight: bold;
+}
+
+.slideThree:hover{
+    transform: scale(1.1); 
+    transition: all 0.5s;  
 }
 
 .slideThree label {
