@@ -99,3 +99,12 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+
+function newSensor(){
+    var code = document.getElementsByTagName("ul");
+    var sensor = document.getElementsByClassName("flex-item")[0];
+    var newsensor = sensor.cloneNode(true);
+    sensor.parentNode.appendChild(newsensor);
+ 
+}
