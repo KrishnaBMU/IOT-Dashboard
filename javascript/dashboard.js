@@ -72,6 +72,7 @@ function newSensor(){
     sensors.removeChild(document.querySelector(".addItem"));
     console.log(sensors.innerHTML)
     sensors.innerHTML += sensorStart + document.getElementById("sensorName").value + sensorMiddle + document.getElementById("sensorLocation").value +  sensorEnd +"\n\n\n" + addSensorText;
+    newSensorPopup();
 }
 // var ctx = document.getElementById('myChart').getContext('2d');
 // var myChart = new Chart(ctx, {
