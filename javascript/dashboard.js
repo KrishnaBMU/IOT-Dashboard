@@ -52,11 +52,11 @@ function newSensor(){
     <h2 class="left">`
     var sensorMiddle = `</h2>
     <br>
-    <img src="icons/map-pin.svg" alt="map-pin" class="left svg-white" />
+    <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/map-pin.svg" alt="map-pin" class="left svg-white" />
     <p>`
     var sensorEnd = `</p>
     <br>
-    <img src="icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
+    <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
     <p class="pointer" onclick="stats(8)">See Stats</p>
     <div class="slideThree">
         <input type="checkbox" value="None" id="slideThree8" name="check" />
@@ -65,7 +65,7 @@ function newSensor(){
 </li>`
 
     var addSensorText = `<div class="addItem pointer" onclick="newSensorPopup()">
-    <img src="icons/addItem.png" width="100px" height="100px" alt="Add">
+    <img src="https://github.com/KrishnaBMU/IOT-Dashboard/blob/main/icons/addItem.png?raw=true" width="100px" height="100px" alt="Add">
 </div>`
     
     var sensors = document.querySelector("ul");
