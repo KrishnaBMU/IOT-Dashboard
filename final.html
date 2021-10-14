@@ -403,7 +403,7 @@ flex item color palette
             margin-bottom: 25px;
         }
 
-        button {
+        /* button {
             background-color: #fff7e9;
             color: #152833;
             font-family: "futura";
@@ -417,7 +417,7 @@ flex item color palette
             opacity: 0.9;
             border: 3px solid #152833;
             outline: none;
-        }
+        } */
 
         button:hover {
             opacity: 1;
@@ -727,8 +727,13 @@ flex item color palette
     function newSensorPopupSave() {
         let sensorName = document.getElementById("sensorName");
         let sensorLocation = document.getElementById("sensorLocation");
+<<<<<<< HEAD
         number = number + 1;  
         newSensor();    
+=======
+        newSensor();
+        number = number + 1;      
+>>>>>>> 3aa9650 (Buttons Updated Styling)
     }
 
     function newSensor() {
@@ -742,10 +747,10 @@ flex item color palette
         var sensorEnd = `</p>
 <br>
 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
-<p class="pointer" onclick="stats(8)">See Stats</p>
+<p class="pointer" onclick="stats(`+ number +`)">See Stats</p>
 <div class="slideThree">
-    <input type="checkbox" value="None" id="slideThree8" onchange="checkbox()" name="check" />
-    <label for="slideThree8"></label>
+    <input type="checkbox" value="None" id="slideThree` + number + `" onchange="checkbox()" name="check" />
+    <label for="slideThree` + number + `"></label>
 </div>
 </li>`
 
