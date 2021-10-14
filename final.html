@@ -709,20 +709,19 @@ flex item color palette
         <button class="open-button" onclick="openForm()">Chat</button>
 
         <div class="chat-popup" id="myForm">
-            <form action="/action_page.php" class="form-container">
+            <div class="form-container">
                 <h1>Chat</h1>
 
-                <label for="msg"><b>Message</b></label>
-                <textarea placeholder="Type message.." name="msg" required></textarea>
+                <label for="msg"><b>Request</b></label>
+                <textarea id="ChatbotText" placeholder="Type message.." name="msg"></textarea>
 
-                <button type="submit" class="btn">Send</button>
+                <button onclick="sendForm()" class="btn">Send</button>
                 <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-            </form>
+            </div>
         </div>
 
 </body>
 <script>
-
 
     let number = 6;
 
@@ -859,6 +858,28 @@ flex item color palette
 
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
+        document.getElementById("ChatboText").value = "";
+    }
+
+
+    function sendForm() {
+        const chat = document.getElementById("ChatbotText");
+        const chatText = chat.value;
+        let chatArray = chatText.split(" ")
+        try {
+            var box = document.getElementById("slideThree" + chatArray[1]);
+            if (chatArray[0] == "on") {
+                box.checked = true;
+            }
+            if (chatArray[0] == "off") {
+                box.checked = false;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        checkbox();
+        chat.value = "";
     }
 
 </script>
