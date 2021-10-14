@@ -168,10 +168,6 @@ flex item color palette
             margin-left: 10px;
         }
 
-        .svg-white {
-            /*filter: invert(99%) sepia(22%) saturate(316%) hue-rotate(308deg) brightness(100%) contrast(102%);*/
-        }
-
         a:link,
         a:visited {
             color: #5775c8;
@@ -434,43 +430,90 @@ flex item color palette
             width: 50%;
         }
 
-
-        /* Add padding to container elements */
-
-        .container {
-            padding: 16px;
+        /* Chat Bot Styling */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-
-        /* Clear floats */
-
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
+        * {
+            box-sizing: border-box;
         }
 
-        .formdiv {
-            transform: translateY(100px);
-            height: 800px;
-            width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #cfc2ff;
-            border-radius: 2%;
+        /* Button used to open the chat form - fixed at the bottom of the page */
+        .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
             border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
         }
 
-        label {
-            font-family: 'futura';
-            font-size: 22px;
-            color: #152833;
+        /* The popup chat - hidden by default */
+        .chat-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        /* Full-width textarea */
+        .form-container textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+            resize: none;
+            min-height: 200px;
+        }
+
+        /* When the textarea gets focus, do something */
+        .form-container textarea:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Set a style for the submit/send button */
+        .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 1;
         }
     </style>
 </head>
 
 <body>
-    <div class="Account" style="display: none;">
+    <div class="Account" style="display:none">
         <div class="AccountInside">
             <img id="ProfilePic"
                 style="height: 150px;width: 150px;border-radius: 500px;margin-bottom: 20px;border: 3px solid white;box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;margin-bottom: 100px;"
@@ -662,8 +705,20 @@ flex item color palette
             </div>
         </ul>
 
-    </div>
 
+        <button class="open-button" onclick="openForm()">Chat</button>
+
+        <div class="chat-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+                <h1>Chat</h1>
+
+                <label for="msg"><b>Message</b></label>
+                <textarea placeholder="Type message.." name="msg" required></textarea>
+
+                <button type="submit" class="btn">Send</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
 
 </body>
 <script>
@@ -688,7 +743,7 @@ flex item color palette
 
     function stats(SendorId) {
 
-        let link = "https://thingspeak.com/channels/1526741/charts/"+SendorId+"?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"
+        let link = "https://thingspeak.com/channels/1526741/charts/" + SendorId + "?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"
 
         let stats = document.querySelector(".Stats");
         let notPopup = document.querySelector(".NotPopup")
@@ -710,13 +765,13 @@ flex item color palette
         if (sensor.style.display == "none") {
             sensor.style.display = "flex"
             notPopup.style.filter = "blur(7px)";
-            if(number<10){
+            if (number < 10) {
                 document.getElementById("pinnum").innerHTML = 'D' + (number);
             }
-            else{
+            else {
                 document.getElementById("pinnum").innerHTML = "No more pins available";
             }
-            
+
         }
         else {
             sensor.style.display = "none"
@@ -727,8 +782,8 @@ flex item color palette
     function newSensorPopupSave() {
         let sensorName = document.getElementById("sensorName");
         let sensorLocation = document.getElementById("sensorLocation");
-        newSensor();    
-        number = number + 1;  
+        newSensor();
+        number = number + 1;
     }
 
     function newSensor() {
@@ -742,7 +797,7 @@ flex item color palette
         var sensorEnd = `</p>
 <br>
 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
-<p class="pointer" onclick="stats(`+ number +`)">See Stats</p>
+<p class="pointer" onclick="stats(`+ number + `)">See Stats</p>
 <div class="slideThree">
     <input type="checkbox" value="None" id="slideThree` + number + `" onchange="checkbox()" name="check" />
     <label for="slideThree` + number + `"></label>
@@ -761,41 +816,6 @@ flex item color palette
     }
 
 
-    var ctx = document.getElementById('WashroomTap').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
 
 
     function send(link) {
@@ -812,32 +832,34 @@ flex item color palette
 
     var option1 = document.getElementById("slideThree1");
     var option2 = document.getElementById("slideThree2");
-    let a="0";
-    let b="0";
-    function checkbox(){     
-        
+    let a = "0";
+    let b = "0";
+    function checkbox() {
+
         if (option1.checked) {
-            a="1";
+            a = "1";
         }
         else if (!option1.checked) {
-            a="0";
+            a = "0";
         }
         if (option2.checked) {
-            b="1";
+            b = "1";
         }
         else if (!option2.checked) {
-            b="0";
+            b = "0";
         }
-        let link = "https://api.thingspeak.com/update?api_key=Z23ESCW35RJN0OFD&field1="+a+"&field2="+b;
+        let link = "https://api.thingspeak.com/update?api_key=Z23ESCW35RJN0OFD&field1=" + a + "&field2=" + b;
         send(link);
-        }
+    }
 
-    // setInterval(function() 
-    // {
-    //     checkbox();
-    // }, 1000); 
-    
 
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
 
 </script>
 
