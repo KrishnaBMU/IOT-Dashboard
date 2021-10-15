@@ -504,7 +504,7 @@ flex item color palette
             border: none;
             background: #f1f1f1;
             resize: none;
-            min-height: 200px;
+            min-height: 100px;
         }
 
         /* When the textarea gets focus, do something */
@@ -760,7 +760,8 @@ flex item color palette
                 <h1>Chat</h1>
 
                 <label for="msg"><b>Request</b></label>
-                <textarea id="ChatbotText" placeholder="Type message.." name="msg"></textarea>
+                <textarea id="ChatbotText" placeholder="Type message..." name="msg"></textarea>
+                <textarea id="ChatbotTextOutput" style="cursor: text;user-select: none;padding: 10px;" placeholder="Output..." readonly></textarea>
 
                 <button class="pushable" style="background-color: #087e49;" onclick="sendForm()">
                     <span class="front" style="background-color: #04AA6D;">
@@ -913,12 +914,14 @@ flex item color palette
 
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
-        document.getElementById("ChatboText").value = "";
+        document.getElementById("ChatbotText").value = "";
+        document.getElementById("ChatbotTextOutput").value = "";
     }
 
 
     function sendForm() {
         const chat = document.getElementById("ChatbotText");
+        const chatOutput = document.getElementById("ChatbotTextOutput");
         const chatText = chat.value;
         let chatArray = chatText.split(" ")
         try {
@@ -934,7 +937,9 @@ flex item color palette
         }
 
         checkbox();
+        chatOutput.value += "\nDone!."
         chat.value = "";
+
     }
 
 </script>
