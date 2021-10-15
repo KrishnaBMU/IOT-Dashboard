@@ -759,7 +759,7 @@ flex item color palette
             <div class="form-container">
                 <h1>Chat</h1>
 
-                <label for="msg"><b>Request</b></label>
+                <label for="msg"></label>
                 <textarea id="ChatbotText" placeholder="Type message..." name="msg"></textarea>
                 <textarea id="ChatbotTextOutput" style="cursor: text;user-select: none;padding: 10px;" placeholder="Output..." readonly></textarea>
 
@@ -928,18 +928,65 @@ flex item color palette
             var box = document.getElementById("slideThree" + chatArray[1]);
             if (chatArray[0] == "on") {
                 box.checked = true;
+                chatOutput.value = "\nswitched "+chat.value
             }
-            if (chatArray[0] == "off") {
+            else if (chatArray[0] == "off") {
                 box.checked = false;
+                chatOutput.value = "\nswitched "+chat.value
+            }
+            else if (chatArray[0] == "help") {
+                
+                str = `Hello master!
+I am here to help you.
+
+Here are my commands - 
+1. help
+2. on/off
+3. numOf on
+4. numOf off                `
+                chatOutput.value = str
+            }
+            else if (chatArray[0] == "numOf") {
+                if (chatArray[1] == "on"){
+                    chatOutput.value = "There are "+countOn()+"devices on";
+                }
+                if (chatArray[1] == "off"){
+                    chatOutput.value = "There are "+countOff()+"devices off";
+                }
+                
+            }
+            else{
+                chatOutput = chat.value;
             }
         } catch (error) {
             console.log(error);
         }
 
         checkbox();
-        chatOutput.value += "\nDone!."
         chat.value = "";
 
+    }
+
+    function countOn(){
+        let count = 0;
+        for(i=1;i<number;i++){
+            temp = document.getElementById("slideThree"+i);
+            if(temp.checked){
+                count = count+1
+            }
+        }
+        return count;
+    }
+
+    function countOff(){
+        let count = 0;
+        for(i=1;i<number;i++){
+            temp = document.getElementById("slideThree"+i);
+            if(!temp.checked){
+                count = count+1
+            }
+        }
+        return count;
     }
 
 </script>
