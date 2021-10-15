@@ -948,10 +948,12 @@ Here are my commands -
             }
             else if (chatArray[0] == "numOf") {
                 if (chatArray[1] == "on"){
-                    chatOutput.value = "There are "+countOn()+"devices on";
+                    chatOutput.value = "There are "+countOn()+" devices on";
+                    console.log(countOn());
                 }
                 if (chatArray[1] == "off"){
-                    chatOutput.value = "There are "+countOff()+"devices off";
+                    chatOutput.value = "There are "+countOff()+" devices off";
+                    console.log(countOff());
                 }
                 
             }
