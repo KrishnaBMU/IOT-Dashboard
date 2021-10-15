@@ -430,6 +430,30 @@ flex item color palette
             width: 50%;
         }
 
+        /* Button Style */
+        .pushable {
+            background: hsl(340deg 100% 32%);
+            border: none;
+            border-radius: 12px;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .front {
+            display: block;
+            padding: 12px 42px;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            background: hsl(345deg 100% 47%);
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        .pushable:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        
         /* Chat Bot Styling */
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -439,27 +463,28 @@ flex item color palette
             box-sizing: border-box;
         }
 
-        /* Button used to open the chat form - fixed at the bottom of the page */
+        
         .open-button {
-            background-color: #555;
+            /* background-color: #555;
             color: white;
             padding: 16px 20px;
             border: none;
             cursor: pointer;
-            opacity: 0.8;
+            opacity: 0.8; */
             position: fixed;
             bottom: 23px;
             right: 28px;
             width: 280px;
         }
 
-        /* The popup chat - hidden by default */
+        
         .chat-popup {
             display: none;
             position: fixed;
             bottom: 0;
             right: 15px;
-            border: 3px solid #f1f1f1;
+            border-radius: 20px;
+            border: 5px solid #f1f1f1;
             z-index: 9;
         }
 
@@ -467,6 +492,7 @@ flex item color palette
         .form-container {
             max-width: 300px;
             padding: 10px;
+            border-radius: 20px;
             background-color: white;
         }
 
@@ -706,17 +732,46 @@ flex item color palette
         </ul>
 
 
-        <button class="open-button" onclick="openForm()">Chat</button>
 
-        <div class="chat-popup" id="myForm">
+        <style>
+            .front {
+                will-change: transform;
+                transition: transform 250ms;
+            }
+
+            .pushable:hover .front {
+                transform: translateY(-6px);
+            }
+
+            .pushable:active .front {
+                transform: translateY(-2px);
+            }
+        </style>
+
+        <button class="pushable open-button" onclick="openForm()">
+            <span class="front">
+                Chat
+            </span>
+        </button>
+        <!-- <button class="open-button">Chat</button> -->
+
+        <div class="chat-popup" id="myForm" >
             <div class="form-container">
                 <h1>Chat</h1>
 
                 <label for="msg"><b>Request</b></label>
                 <textarea id="ChatbotText" placeholder="Type message.." name="msg"></textarea>
 
-                <button onclick="sendForm()" class="btn">Send</button>
-                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                <button class="pushable" style="background-color: #087e49;" onclick="sendForm()">
+                    <span class="front" style="background-color: #04AA6D;">
+                        Send
+                    </span>
+                </button>
+                <button class="pushable" onclick="closeForm()">
+                    <span class="front">
+                        close
+                    </span>
+                </button>
             </div>
         </div>
 
