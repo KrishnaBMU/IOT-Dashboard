@@ -295,6 +295,17 @@ flex item color palette
             flex-direction: column;
         }
 
+        .EditSensor {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 15;
+            border-radius: 30px;
+        }
+
         .AddSensor {
             width: 100%;
             height: 100%;
@@ -541,30 +552,101 @@ flex item color palette
 <body>
     <div class="Account" style="display:none">
         <div class="AccountInside">
+
+            <table>
+                <tr>
+                    <td style="padding-top: 10px;">
+                        <p>Profile url:</p>
+                    </td>
+                    <td style="padding-left: 5px;">
+                        <input type="text" id="profileUrl" value="">
+                    </td>
+                </tr>
+            </table>
+
             <img id="ProfilePic"
                 style="height: 150px;width: 150px;border-radius: 500px;margin-bottom: 20px;border: 3px solid white;box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;margin-bottom: 100px;"
-                src="profile.png" alt="">
+                src="https://1.bp.blogspot.com/-0ZUMPsBahSo/X0vuBttwtWI/AAAAAAAAdwM/_0Nuxi-PWUsgTsLdAmGZqILPiJf7N2bdACLcBGAsYHQ/s640/best%2Bdp%2Bfor%2Bwhatsapp%2B%25281%2529.jpg" alt="">
 
             <p style="padding-left: 10%;padding-right: 10%;line-height: unset;text-align: center;">Change
                 <b>Profile.png</b> to your Profile pic
             </p>
 
-            <button onclick="account()"
-                style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;"
-                class="pointer">Close</button>
+            <div style="display: flex;justify-content: center; width: 100%;min-height: 20%;align-items: center;">
+                <button onclick="profileSave()"
+                    style="margin: 10%; padding: 5px 13px;background-color: rgb(163, 255, 163);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Save</button>
+
+                <button onclick="account()"
+                    style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;"
+                    class="pointer">Close</button>
+            </div>
+
         </div>
     </div>
 
     <div class="Stats" style="display: none;">
         <div class="StatsInside">
 
-            <iframe src="" id="iframe1" width="100%" height="50%"></iframe>
+            <iframe src="" id="iframe1" width="100%" height="40%"></iframe>
 
 
             <button onclick="stats()"
                 style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Close</button>
         </div>
 
+    </div>
+
+    <div class="EditSensor" style="display: none;">
+        <div class="AddSensorInside">
+
+            <form method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="padding-top: 10px;">
+                                <p>Sensor Id:</p>
+                            </td>
+                            <td style="padding-top: 5px;">
+                                <!-- <input type="list" list="editSensorSelect"/> -->
+                                <select id="editSensorSelect">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 10px;">
+                                <p>Sensor Name:</p>
+                            </td>
+                            <td style="padding-left: 5px;">
+                                <input type="text" name="sensorName" id="editSensorName" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 10px;">
+                                <p>Location: </p>
+                            </td>
+                            <td style="padding-left: 5px;">
+                                <input type="text" name="sensorLocation" id="editSensorLocation" value="">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+
+            <div style="display: flex;justify-content: center; width: 100%;min-height: 20%;align-items: center;">
+                <button onclick="editSensorPopupSave()"
+                    style="margin: 10%; padding: 5px 13px;background-color: rgb(163, 255, 163);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Save</button>
+                &nbsp; &nbsp; &nbsp;
+                <button onclick="editSensorPopup()"
+                    style="margin: 10%; padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Close</button>
+            </div>
+        </div>
     </div>
 
     <div class="AddSensor" style="display: none;">
@@ -617,7 +699,7 @@ flex item color palette
         <br>
         <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/edit.svg"
             alt="map-pin" class="left svg-white" />
-        <a style="cursor: pointer;">
+        <a onclick="editSensorPopup()" style="cursor: pointer;">
             <h2>Edit Sensor Information</h2>
         </a>
         <br>
@@ -629,11 +711,11 @@ flex item color palette
         <ul class="flex-container">
 
             <li class="flex-item">
-                <h2 class="left">Light</h2>
+                <h2 id="deviceName1" class="left">Light</h2>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/map-pin.svg"
                     alt="map-pin" class="left svg-white" />
-                <p>Master Bedroom</p>
+                <p id="deviceLocation1">Master Bedroom</p>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg"
                     alt="pie-chart" class="left svg-white" />
@@ -645,11 +727,11 @@ flex item color palette
             </li>
 
             <li class="flex-item">
-                <h2 class="left">Water Tap</h2>
+                <h2 id="deviceName2" class="left">Water Tap</h2>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/map-pin.svg"
                     alt="map-pin" class="left svg-white" />
-                <p>Kitchen</p>
+                <p id="deviceLocation2">Kitchen</p>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg"
                     alt="pie-chart" class="left svg-white" />
@@ -661,11 +743,11 @@ flex item color palette
             </li>
 
             <li class="flex-item">
-                <h2 class="left">Temperature</h2>
+                <h2 id="deviceName3" class="left">Temperature</h2>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/map-pin.svg"
                     alt="map-pin" class="left svg-white" />
-                <p>Kitchen</p>
+                <p id="deviceLocation3">Kitchen</p>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg"
                     alt="pie-chart" class="left svg-white" />
@@ -677,11 +759,11 @@ flex item color palette
             </li>
 
             <li class="flex-item">
-                <h2 class="left">Fire</h2>
+                <h2 id="deviceName4" class="left">Fire</h2>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/map-pin.svg"
                     alt="map-pin" class="left svg-white" />
-                <p>Kitchen</p>
+                <p id="deviceLocation4">Kitchen</p>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg"
                     alt="pie-chart" class="left svg-white" />
@@ -693,11 +775,11 @@ flex item color palette
             </li>
 
             <li class="flex-item">
-                <h2 class="left">Door</h2>
+                <h2 id="deviceName5" class="left">Door</h2>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/map-pin.svg"
                     alt="map-pin" class="left svg-white" />
-                <p>Garage</p>
+                <p id="deviceLocation5">Garage</p>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg"
                     alt="pie-chart" class="left svg-white" />
@@ -709,11 +791,11 @@ flex item color palette
             </li>
 
             <li class="flex-item">
-                <h2 class="left">Lights</h2>
+                <h2 id="deviceName6" class="left">Lights</h2>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/map-pin.svg"
                     alt="map-pin" class="left svg-white" />
-                <p>Living Room</p>
+                <p id="deviceLocation6">Living Room</p>
                 <br>
                 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg"
                     alt="pie-chart" class="left svg-white" />
@@ -760,7 +842,8 @@ flex item color palette
                 <h1>Chat</h1>
 
                 <label for="msg"></label>
-                <input id="ChatbotText" rows="1" placeholder="Type message..." name="msg"></input>
+                <input id="ChatbotText" rows="1" placeholder="Type message..." onkeypress="keyPress()"
+                    name="msg"></input>
                 <textarea id="ChatbotTextOutput" style="cursor: text;user-select: none;padding: 10px;"
                     placeholder="Output..." readonly></textarea>
 
@@ -797,6 +880,12 @@ flex item color palette
         }
     }
 
+    function profileSave(){
+        document.getElementById("ProfilePic").src = document.getElementById("profileUrl").value;
+        document.getElementById("profileUrl").value = "";
+        account();
+    }
+
     function stats(SendorId) {
 
         let link = "https://thingspeak.com/channels/1526741/charts/" + SendorId + "?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"
@@ -821,7 +910,7 @@ flex item color palette
         if (sensor.style.display == "none") {
             sensor.style.display = "flex"
             notPopup.style.filter = "blur(7px)";
-            if (number < 10) {
+            if (number < 8) {
                 document.getElementById("pinnum").innerHTML = 'D' + (number);
             }
             else {
@@ -845,11 +934,11 @@ flex item color palette
     function newSensor() {
         var code = document.getElementsByTagName("ul");
         var sensorStart = `<li class="flex-item">
-<h2 class="left">`
+<h2 id="deviceName` + (number + 1) + `"class="left">`
         var sensorMiddle = `</h2>
 <br>
 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/map-pin.svg" alt="map-pin" class="left svg-white" />
-<p>`
+<p id="deviceLocation` + (number + 1) + `">`
         var sensorEnd = `</p>
 <br>
 <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/pie-chart.svg" alt="pie-chart" class="left svg-white" />
@@ -868,11 +957,14 @@ flex item color palette
         sensors.removeChild(document.querySelector(".addItem"));
         console.log(sensors.innerHTML)
         sensors.innerHTML += sensorStart + document.getElementById("sensorName").value + sensorMiddle + document.getElementById("sensorLocation").value + sensorEnd + "\n\n\n" + addSensorText;
+
+        let newSelect = document.createElement("option");
+        newSelect.value = number + 1
+        newSelect.innerHTML = number + 1
+        document.getElementById("editSensorSelect").append(newSelect)
+
         newSensorPopup();
     }
-
-
-
 
     function send(link) {
         var xhttp = new XMLHttpRequest();
@@ -944,7 +1036,7 @@ flex item color palette
         // else if (!option7.checked) {
         //     g = "0";
         // }
-        let link = "https://api.thingspeak.com/update?api_key=Z23ESCW35RJN0OFD&field1=" + a + "&field2=" + b+ "&field3=" + c+ "&field4=" + d+ "&field5=" + e+ "&field6=" + f;
+        let link = "https://api.thingspeak.com/update?api_key=Z23ESCW35RJN0OFD&field1=" + a + "&field2=" + b + "&field3=" + c + "&field4=" + d + "&field5=" + e + "&field6=" + f;
         send(link);
     }
 
@@ -959,12 +1051,8 @@ flex item color palette
         document.getElementById("ChatbotTextOutput").value = "";
     }
 
-    function keyPress(event){
-        if(window.event.keyCode == 13){
-            let chatText = document.getElementById("ChatbotText").value;
-            let chatArray = chatText.split("\n");
-            console.log(chatArray)
-            document.getElementById("ChatbotText").value = chatArray[0];
+    function keyPress(event) {
+        if (window.event.keyCode == 13) {
             sendForm();
         }
     }
@@ -1049,6 +1137,31 @@ Here are my commands -
             }
         }
         return count;
+    }
+
+    function editSensorPopup() {
+        let sensor = document.querySelector(".EditSensor");
+        let notPopup = document.querySelector(".NotPopup")
+        if (sensor.style.display == "none") {
+            sensor.style.display = "flex"
+            notPopup.style.filter = "blur(7px)";
+        }
+        else {
+            sensor.style.display = "none"
+            notPopup.style.filter = ""
+        }
+    }
+    function editSensorPopupSave() {
+        let editSensorSelect = document.getElementById("editSensorSelect");
+        let editSensorName = document.getElementById("editSensorName");
+        let editSensorLocation = document.getElementById("editSensorLocation");
+
+        let sensorName = document.getElementById("deviceName" + editSensorSelect.value);
+        let sensorLocation = document.getElementById("deviceLocation" + editSensorSelect.value)
+
+        sensorName.innerHTML = editSensorName.value;
+        sensorLocation.innerHTML = editSensorLocation.value;
+        editSensorPopup();
     }
 
 </script>
