@@ -151,13 +151,6 @@ flex item color palette
             border-radius: 5%;
         }
 
-
-        /* .flex-item:hover > h2,.flex-item:hover > p {
-    font-weight: bold;
-    transition: font-weight 0.5s;  
-    
-} */
-
         .flex-item:hover {
             border: 1px solid rgb(255, 167, 255);
             transform: scale(1.05);
@@ -410,22 +403,6 @@ flex item color palette
             margin-bottom: 25px;
         }
 
-        /* button {
-            background-color: #fff7e9;
-            color: #152833;
-            font-family: "futura";
-            text-transform: uppercase;
-            font-size: 22px;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            opacity: 0.9;
-            border: 3px solid #152833;
-            outline: none;
-        } */
-
         button:hover {
             opacity: 1;
         }
@@ -476,12 +453,6 @@ flex item color palette
 
 
         .open-button {
-            /* background-color: #555;
-            color: white;
-            padding: 16px 20px;
-            border: none;
-            cursor: pointer;
-            opacity: 0.8; */
             position: fixed;
             bottom: 23px;
             right: 28px;
@@ -499,7 +470,6 @@ flex item color palette
             z-index: 9;
         }
 
-        /* Add styles to the form container */
         .form-container {
             max-width: 300px;
             padding: 10px;
@@ -507,7 +477,7 @@ flex item color palette
             background-color: white;
         }
 
-        /* Full-width textarea */
+
         .form-container textarea {
             width: 100%;
             padding: 15px;
@@ -518,13 +488,12 @@ flex item color palette
             min-height: 100px;
         }
 
-        /* When the textarea gets focus, do something */
         .form-container textarea:focus {
             background-color: #ddd;
             outline: none;
         }
 
-        /* Set a style for the submit/send button */
+
         .form-container .btn {
             background-color: #04AA6D;
             color: white;
@@ -536,12 +505,12 @@ flex item color palette
             opacity: 0.8;
         }
 
-        /* Add a red background color to the cancel button */
+
         .form-container .cancel {
             background-color: red;
         }
 
-        /* Add some hover effects to buttons */
+
         .form-container .btn:hover,
         .open-button:hover {
             opacity: 1;
@@ -576,7 +545,7 @@ flex item color palette
                 <button onclick="profileSave()"
                     style="margin: 10%; padding: 5px 13px;background-color: rgb(163, 255, 163);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Save</button>
 
-                <button onclick="account()"
+                <button onclick="popup('.Account')"
                     style="padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;"
                     class="pointer">Close</button>
             </div>
@@ -607,7 +576,6 @@ flex item color palette
                                 <p>Sensor Id:</p>
                             </td>
                             <td style="padding-top: 5px;">
-                                <!-- <input type="list" list="editSensorSelect"/> -->
                                 <select id="editSensorSelect">
                                     <option value="1" selected>1</option>
                                     <option value="2">2</option>
@@ -643,7 +611,7 @@ flex item color palette
                 <button onclick="editSensorPopupSave()"
                     style="margin: 10%; padding: 5px 13px;background-color: rgb(163, 255, 163);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Save</button>
                 &nbsp; &nbsp; &nbsp;
-                <button onclick="editSensorPopup()"
+                <button onclick="popup('.EditSensor')"
                     style="margin: 10%; padding: 5px 13px;background-color: rgb(255, 132, 110);border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;cursor: pointer;">Close</button>
             </div>
         </div>
@@ -699,13 +667,13 @@ flex item color palette
         <br>
         <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/edit.svg"
             alt="map-pin" class="left svg-white" />
-        <a onclick="editSensorPopup()" style="cursor: pointer;">
+        <a onclick="popup('.EditSensor')" style="cursor: pointer;">
             <h2>Edit Sensor Information</h2>
         </a>
         <br>
         <img src="https://raw.githubusercontent.com/KrishnaBMU/IOT-Dashboard/fc2a4b3d087394b534a8ddc8ce897679f96a9321/icons/user.svg"
             alt="map-pin" class="left svg-white" />
-        <a onclick="account()" style="cursor: pointer;">
+        <a onclick="popup('.Account')" style="cursor: pointer;">
             <h2>View Profile</h2>
         </a>
         <ul class="flex-container">
@@ -835,7 +803,6 @@ flex item color palette
                 Chat
             </span>
         </button>
-        <!-- <button class="open-button">Chat</button> -->
 
         <div class="chat-popup" id="myForm">
             <div class="form-container">
@@ -865,14 +832,13 @@ flex item color palette
 
     let number = 6;
 
-    function account() {
 
-        let account = document.querySelector(".Account");
+    function popup(parm){
+        let account = document.querySelector(parm);
         let notPopup = document.querySelector(".NotPopup")
         if (account.style.display == "none") {
             account.style.display = "flex"
             notPopup.style.filter = "blur(7px)";
-
         }
         else {
             account.style.display = "none"
@@ -883,7 +849,7 @@ flex item color palette
     function profileSave(){
         document.getElementById("ProfilePic").src = document.getElementById("profileUrl").value;
         document.getElementById("profileUrl").value = "";
-        account();
+        popup('.Account');
     }
 
     function stats(SendorId) {
@@ -968,11 +934,6 @@ flex item color palette
 
     function send(link) {
         var xhttp = new XMLHttpRequest();
-        // xhttp.onreadystatechange = function () {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         document.getElementById("state").innerHTML = this.responseText;
-        //     }
-        // };
         console.log(link);
         xhttp.open("GET", link, true);
         xhttp.send();
@@ -1030,12 +991,6 @@ flex item color palette
         else if (!option6.checked) {
             f = "0";
         }
-        // if (option7.checked) {
-        //     g = "1";
-        // }
-        // else if (!option7.checked) {
-        //     g = "0";
-        // }
         let link = "https://api.thingspeak.com/update?api_key=Z23ESCW35RJN0OFD&field1=" + a + "&field2=" + b + "&field3=" + c + "&field4=" + d + "&field5=" + e + "&field6=" + f;
         send(link);
     }
@@ -1102,7 +1057,7 @@ Here are my commands -
                 stats(chatArray[1])
             }
             else if (chatArray[0] == "profile") {
-                account()
+                popup('.Account')
 
             }
             else {
@@ -1139,18 +1094,6 @@ Here are my commands -
         return count;
     }
 
-    function editSensorPopup() {
-        let sensor = document.querySelector(".EditSensor");
-        let notPopup = document.querySelector(".NotPopup")
-        if (sensor.style.display == "none") {
-            sensor.style.display = "flex"
-            notPopup.style.filter = "blur(7px)";
-        }
-        else {
-            sensor.style.display = "none"
-            notPopup.style.filter = ""
-        }
-    }
     function editSensorPopupSave() {
         let editSensorSelect = document.getElementById("editSensorSelect");
         let editSensorName = document.getElementById("editSensorName");
@@ -1161,7 +1104,7 @@ Here are my commands -
 
         sensorName.innerHTML = editSensorName.value;
         sensorLocation.innerHTML = editSensorLocation.value;
-        editSensorPopup();
+        popup('.EditSensor');
     }
 
 </script>
